@@ -45,7 +45,7 @@ def linreg(x_feat, y_feat, title):
     plt.plot_date(pd.to_datetime(test.index), test[[y_feat, 'Predictions']], fmt='-')
     plt.title(title)
     plt.xlabel('Date')
-    plt.ylabel(y_feat[0])
+    plt.ylabel(y_feat)
     plt.legend(['Training Data', 'Test Data', 'Test Prediction'])
     plt.show()
 
@@ -54,14 +54,14 @@ def linreg(x_feat, y_feat, title):
 
 # Perform linear regression for a variety of flood data input and output features
 # Stage based on Flow and Precip at one location
-site = 'Z'
+site = 'Y'
 title = 'Stage of {0} based on Flow and Precip'.format(site)
 mse = linreg(['{0}_Flow'.format(site), '{0}_Precip'.format(site)],
              '{0}_Stage'.format(site), title)
 print('{0} MSE = {1}'.format(title, mse))
 
 # Stage based on Flow, Precip, and Flood at one location
-site = 'Z'
+site = 'Y'
 title = 'Flow of {0} based on Flow, Precip, and Flood'.format(site)
 mse = linreg(['{0}_Stage'.format(site), '{0}_Precip'.format(site), '{0}_Flood'.format(site)],
              '{0}_Flow'.format(site), title)
