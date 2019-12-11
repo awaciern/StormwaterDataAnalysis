@@ -3,6 +3,7 @@ import pandas as pd
 from os import listdir
 from os.path import isfile, join
 
+
 # Get all the sensor dataset files
 files = [f for f in listdir('../Data/Source') if isfile(join('../Data/Source', f))]
 
