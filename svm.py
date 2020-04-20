@@ -1,7 +1,7 @@
 # Importing libraries
 import pandas as pd
 import numpy as np
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn import svm
 
 
 # Read in the big dataset with flood data
@@ -16,12 +16,11 @@ print(test)
 
 
 # Function to perform k nearest neighbors classification for specified features
-def knn(x_feat, y_feat, k):
-    print('K Nearest Neighbors Classification for {0} based on {1} with {2} Neighbors:'
-          .format(y_feat, x_feat, k))
+def run_svm(x_feat, y_feat):
+    print('SVM Classification for {0} based on {1}:'.format(y_feat, x_feat))
 
     # Train the k nearest neighbors model on training data
-    model = KNeighborsClassifier(n_neighbors=k)
+    model = svm.SVC()
     model.fit(train[x_feat], train[y_feat])
 
     # Make predictions from model for test data
@@ -40,15 +39,13 @@ def knn(x_feat, y_feat, k):
     print('{0} % Successfully Classified\n'.format(percent_succ))
 
 
-# Run k nearest neighbors classification on flood data with different input fields
-k = 10
-
+# Run SVM classification on flood data with different input fields
 # Same location input fields
-knn(['B_Flow', 'B_Precip'], 'B_Flood', k)
-knn(['X_Flow', 'X_Precip'], 'X_Flood', k)
-knn(['Y_Flow', 'Y_Precip'], 'Y_Flood', k)
-knn(['Z_Flow', 'Z_Precip'], 'Z_Flood', k)
+run_svm(['B_Flow', 'B_Precip'], 'B_Flood')
+run_svm(['X_Flow', 'X_Precip'], 'X_Flood')
+run_svm(['Y_Flow', 'Y_Precip'], 'Y_Flood')
+run_svm(['Z_Flow', 'Z_Precip'], 'Z_Flood')
 
 # Other location input fields
-knn(['A_Flow', 'B_Flow', 'B_Precip', 'D_Precip', 'E_Flow'], 'C_Flood', k)
-knn(['X_Flow', 'X_Precip', 'Z_Flow', 'Z_Precip'], 'Y_Flood', k)
+run_svm(['A_Flow', 'B_Flow', 'B_Precip', 'D_Precip', 'E_Flow'], 'C_Flood')
+run_svm(['X_Flow', 'X_Precip', 'Z_Flow', 'Z_Precip'], 'Y_Flood')
