@@ -3,4 +3,4 @@ matplotlib
 sklearn
 scipy==1.4.1
 keras
-tensorflow==2.0
+tensorflow==2.0.3
